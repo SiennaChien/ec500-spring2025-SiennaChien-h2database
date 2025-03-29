@@ -139,6 +139,10 @@ public class TableFilter implements ColumnResolver {
      */
     private LinkedHashMap<Column, String> derivedColumnMap;
 
+    public Expression getFullCondition(){
+        return fullCondition;
+    }
+
     /**
      * Create a new table filter object.
      *

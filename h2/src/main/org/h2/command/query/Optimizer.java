@@ -75,6 +75,21 @@ class Optimizer {
         return i;
     }
 
+//    private void calculateBestPlan(boolean isSelectCommand) {
+//        cost = -1;
+//        if (filters.length == 1) {
+//            testPlan(filters, isSelectCommand);
+//        } else {
+//            startNs = System.nanoTime();
+//            if (filters.length <= MAX_BRUTE_FORCE_FILTERS) {
+//                calculateBruteForceAll(isSelectCommand);
+//            } else {
+//                calculateBruteForceSome(isSelectCommand);
+//                random = new Random(0);
+//                calculateGenetic(isSelectCommand);
+//            }
+//        }
+//    }
     private void calculateBestPlan(boolean isSelectCommand) {
         cost = -1;
         if (filters.length == 1) {
@@ -82,7 +97,9 @@ class Optimizer {
         } else {
             startNs = System.nanoTime();
             if (filters.length <= MAX_BRUTE_FORCE_FILTERS) {
-                calculateBruteForceAll(isSelectCommand);
+                RuleBasedJoinOrderPicker ruleBasedJoinOrderPicker = new RuleBasedJoinOrderPicker(session, filters);
+                TableFilter[] ruleBasedResult = ruleBasedJoinOrderPicker.bestOrder();
+                testPlan(ruleBasedResult, isSelectCommand);
             } else {
                 calculateBruteForceSome(isSelectCommand);
                 random = new Random(0);
