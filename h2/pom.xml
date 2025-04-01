@@ -133,6 +133,12 @@
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
@@ -142,6 +148,24 @@
       <artifactId>asm</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <!-- Mockito Core (for unit tests) -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.7.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Mockito JUnit 5 Extension (if using JUnit 5) -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>5.7.0</version>
+      <scope>test</scope>
+    </dependency>
+
+
     <!-- END TEST DEPENDENCIES !-->
   </dependencies>
 
@@ -261,6 +285,7 @@
           </archive>
         </configuration>
       </plugin>
+
       <!-- Add tools folder to test sources but consider moving them to src/test -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -291,7 +316,9 @@
         </configuration>
       </plugin>
 
+
     </plugins>
+
   </build>
 
 </project>
