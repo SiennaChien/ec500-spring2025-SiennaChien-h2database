@@ -112,6 +112,10 @@ public class RuleBasedJoinOrderPickerTest {
 
         ruleBasedJoinOrderPicker = new RuleBasedJoinOrderPicker(mockSession, inputFilters);
         List<TableFilter> result = Arrays.asList(ruleBasedJoinOrderPicker.bestOrder());
+        System.out.println("Best Join Order:");
+        for (TableFilter tf : result) {
+            System.out.println("Table: " + tf.getTableAlias());
+        }
 
         assertEquals(expectedFilters, result);
     }
@@ -164,7 +168,7 @@ public class RuleBasedJoinOrderPickerTest {
         customersFilter.setFullCondition(fullCondition);
 
         TableFilter ordersFilter = new TableFilter(mockSession, ordersTable, "orders", true, null, 0, null);
-        customersFilter.setFullCondition(fullCondition);
+        ordersFilter.setFullCondition(fullCondition);
 
         // size order is locations, customers, orders
         List<TableFilter> expectedFilters = List.of(locationsFilter, customersFilter, ordersFilter);
@@ -173,6 +177,11 @@ public class RuleBasedJoinOrderPickerTest {
 
         ruleBasedJoinOrderPicker = new RuleBasedJoinOrderPicker(mockSession, inputFilters);
         List<TableFilter> result = Arrays.asList(ruleBasedJoinOrderPicker.bestOrder());
+
+        System.out.println("Best Join Order:");
+        for (TableFilter tf : result) {
+            System.out.println("Table: " + tf.getTableAlias());
+        }
 
         assertEquals(expectedFilters, result);
     }
@@ -209,6 +218,11 @@ public class RuleBasedJoinOrderPickerTest {
 
         ruleBasedJoinOrderPicker = new RuleBasedJoinOrderPicker(mockSession, inputFilters);
         List<TableFilter> result = Arrays.asList(ruleBasedJoinOrderPicker.bestOrder());
+
+        System.out.println("Best Join Order:");
+        for (TableFilter tf : result) {
+            System.out.println("Table: " + tf.getTableAlias());
+        }
 
         assertEquals(expectedFilters, result);
     }
